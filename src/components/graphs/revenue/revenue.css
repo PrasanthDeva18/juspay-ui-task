@@ -1,0 +1,54 @@
+.card {
+  background: #f9fbfd;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  width: 100%;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #111;
+}
+
+.legend {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #444;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-item strong {
+  font-weight: 600;
+  color: #000;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.black {
+  background: #000;
+}
+
+.dot.blue {
+  background: #7db1d9;
+}

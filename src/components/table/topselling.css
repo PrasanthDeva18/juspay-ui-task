@@ -1,0 +1,49 @@
+.table-container {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 700px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.table-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.custom-table th,
+.custom-table td {
+  text-align: left;
+  padding: 12px 10px;
+  font-size: 14px;
+}
+
+.custom-table th {
+  font-weight: 500;
+  color: #9ca3af;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.custom-table td {
+  color: #111827;
+}
+
+.table-container {
+  background-color: #f9fafb;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.custom-table tbody tr td:last-child {
+  font-weight: 500;
+}

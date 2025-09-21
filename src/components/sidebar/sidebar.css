@@ -1,0 +1,204 @@
+/* Sidebar container */
+.sidebar {
+  background-color: #f8f9fa;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  border-right: 1px solid #ddd;
+  position: relative;
+  height: 100vh;
+}
+
+.sidebar.open {
+  width: 260px;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+/* Header */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Tabs */
+.sidebar-tabs {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+}
+
+.sidebar-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar-tab:hover {
+  background: #f0f0f0;
+}
+
+.sidebar-tab.active {
+  background: #e0e0ff;
+  font-weight: bold;
+}
+
+/* Tab items */
+.sidebar-tab-items {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+}
+
+.sidebar-tab-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar-tab-item:hover {
+  background: #f9f9f9;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  flex: 1;
+  overflow-y: visible; /* allow tooltips */
+  padding: 8px 0;
+}
+
+/* Sidebar Sections */
+.sidebar-section {
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.sidebar-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.sidebar-item:hover {
+  background: #e9ecef;
+}
+
+.sidebar-item-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Sub-items */
+.sidebar-children {
+  margin-left: 20px;
+  margin-top: 4px;
+}
+
+.sidebar-children.nested {
+  margin-left: 20px;
+}
+
+.sidebar-leaf {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.sidebar-leaf:hover {
+  background: #f1f3f5;
+}
+
+/* Chevron */
+.chevron {
+  transition: transform 0.2s;
+}
+
+.chevron.rotated {
+  transform: rotate(180deg);
+}
+
+/* Favorites / Star */
+.star {
+  cursor: pointer;
+  color: #9ca3af;
+  transition: color 0.2s;
+}
+
+.star:hover,
+.star.active {
+  color: gold;
+}
+
+/* Tooltip for collapsed sidebar */
+.tooltip {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 8px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  min-width: 150px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar.collapsed .group:hover .tooltip {
+  display: block;
+  opacity: 1;
+}
+
+.tooltip > div {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.tooltip > div:hover {
+  background-color: #f0f0f0;
+}
+
+/* Sidebar Heading */
+.sidebar-heading {
+  font-weight: bold;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: default;
+}

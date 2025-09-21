@@ -1,0 +1,169 @@
+.metrics-card {
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 200px;
+  font-family: system-ui, -apple-system, sans-serif;
+  position: relative;
+}
+
+.metrics-card--blue {
+  background-color: #e0f2fe;
+  color: #0f172a;
+}
+
+.metrics-card--green {
+  background-color: #dcfce7;
+  color: #0f172a;
+}
+
+.metrics-card--purple {
+  background-color: #f3e8ff;
+  color: #0f172a;
+}
+
+.metrics-card--orange {
+  background-color: #fed7aa;
+  color: #0f172a;
+}
+
+.metrics-card--red {
+  background-color: #fee2e2;
+  color: #0f172a;
+}
+
+.metrics-card__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.metrics-card__content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.metrics-card__value-container {
+  position: relative;
+  display: inline-block;
+}
+
+.metrics-card__value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
+  position: relative;
+}
+
+.metrics-card__value--interactive {
+  cursor: pointer;
+}
+
+.metrics-card__hover-bar {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #9ca3af;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.metrics-card__value-container:hover .metrics-card__hover-bar {
+  opacity: 1;
+}
+
+.metrics-card__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.metrics-card__value-container:hover .metrics-card__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.metrics-card__dropdown-item {
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #374151;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.15s ease;
+}
+
+.metrics-card__dropdown-item:hover {
+  background-color: #f9fafb;
+}
+
+.metrics-card__dropdown-value {
+  font-weight: 600;
+  color: #111827;
+}
+
+.metrics-card__dropdown-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.metrics-card__dropdown-change {
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.metrics-card__dropdown-change--positive {
+  color: #059669;
+}
+
+.metrics-card__dropdown-change--negative {
+  color: #dc2626;
+}
+
+.metrics-card__change {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* .metrics-card__change--positive {
+  color: #059669;
+}
+
+.metrics-card__change--negative {
+  color: #dc2626;
+} */
+
+.metrics-card__change-text {
+  margin-right: 2px;
+}
+
+.metrics-card__arrow {
+  width: 10px;
+  height: 10px;
+  transition: transform 0.2s ease;
+}
+
+.metrics-card__arrow--down {
+  transform: rotate(180deg);
+}

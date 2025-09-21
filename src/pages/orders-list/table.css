@@ -1,0 +1,132 @@
+/* --- Main Table Wrapper --- */
+.table-paper {
+  border-radius: 12px !important;
+  padding: 1rem;
+}
+
+/* --- Custom Toolbar --- */
+.toolbar-left-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.toolbar-left-actions h4 {
+  margin: 0;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* --- Table Header --- */
+.table-header-row {
+  background-color: #f9fafb;
+}
+
+thead th {
+  color: #6b7281 !important;
+  font-weight: 600;
+  font-size: 0.75rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- Table Body & Rows --- */
+.table-body-row {
+  transition: background-color 0.2s ease;
+}
+.table-body-row:hover {
+  background-color: #f9fafb;
+}
+.selected-row {
+  background-color: #f3f4f6 !important;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* --- Table Cells --- */
+td {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  color: #374151;
+}
+td,
+th {
+  border-bottom: none !important;
+}
+
+/* --- Status Badges --- */
+.status-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-cell.in-progress {
+  color: #2563eb;
+}
+.status-cell.in-progress .status-dot {
+  background-color: #2563eb;
+}
+
+.status-cell.complete {
+  color: #059669;
+}
+.status-cell.complete .status-dot {
+  background-color: #059669;
+}
+
+.status-cell.pending {
+  color: #d97706;
+}
+.status-cell.pending .status-dot {
+  background-color: #d97706;
+}
+
+.status-cell.approved {
+  color: #7c3aed;
+}
+.status-cell.approved .status-dot {
+  background-color: #7c3aed;
+}
+
+.status-cell.rejected {
+  color: #dc2626;
+}
+.status-cell.rejected .status-dot {
+  background-color: #dc2626;
+}
+
+/* --- Icons --- */
+.action-icon {
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+/* --- Checkbox --- */
+.mantine-Checkbox-input {
+  border-radius: 4px;
+}
+
+/* --- Pagination --- */
+.table-pagination {
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+.mantine-Pagination-control {
+  border: 1px solid #e5e7eb !important;
+}
+.mantine-Pagination-control[data-active] {
+  background-color: #f3f4f6 !important;
+  border-color: #d1d5db !important;
+}

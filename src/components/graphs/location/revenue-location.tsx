@@ -1,4 +1,3 @@
-import React from "react";
 import ReactECharts from "echarts-for-react";
 import * as echarts from "echarts/core";
 import { MapChart } from "echarts/charts";
@@ -13,14 +12,14 @@ echarts.registerMap("world", worldGeoJson as any);
 
 export default function RevenueByLocation() {
   const option = {
-    title: {
-      text: "Revenue by Location",
-      left: "center",
-      textStyle: { fontSize: 18, fontWeight: "bolder" },
-    },
+    // title: {
+    //   text: "Revenue by Location",
+    //   left: "center",
+    //   textStyle: { fontSize: 18, fontWeight: "bolder" },
+    // },
     tooltip: {
       trigger: "item",
-      formatter: (params) => {
+      formatter: (params: any) => {
         return `${params.name}<br/>Revenue: ${params.value?.[2] || 0}`;
       },
     },
@@ -40,7 +39,7 @@ export default function RevenueByLocation() {
         name: "Revenue",
         type: "scatter",
         coordinateSystem: "geo",
-        symbolSize: (val) => Math.max(val[2] / 5000, 12), // bubble size by revenue
+        symbolSize: (val: any) => Math.max(val[2] / 5000, 12), // bubble size by revenue
         itemStyle: {
           color: "#000",
           borderColor: "#fff",
@@ -59,8 +58,8 @@ export default function RevenueByLocation() {
   };
 
   return (
-    <div style={{ height: "250px" }}>
-      <ReactECharts option={option} style={{ height: "100%" }} zoom />
+    <div style={{ height: "150px" }}>
+      <ReactECharts option={option} style={{ height: "150px" }} />
     </div>
   );
 }

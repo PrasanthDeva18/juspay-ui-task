@@ -56,11 +56,13 @@ const TotalSalesCard: React.FC = () => {
 
   return (
     <div className="total-sales-card">
-      <h2>Total Sales</h2>
+      <h2 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "5px" }}>
+        Total Sales
+      </h2>
       <div className="chart-container">
         <ReactECharts
           option={option}
-          style={{ height: "200px", width: "100%" }}
+          style={{ height: "150px", width: "100%" }}
         />
       </div>
       <div className="sales-legend">

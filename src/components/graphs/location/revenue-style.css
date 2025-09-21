@@ -2,28 +2,27 @@
   border: 1px solid #e0e0e0;
   border-radius: 10px;
   padding: 20px;
-  width: 300px;
+  width: 250px;
+  height: 400px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #333;
 }
 
 .revenue-card h2 {
   text-align: center;
-  font-size: 22px;
+  font-size: 30px;
   font-weight: 600;
-  margin-bottom: 20px;
+  /* margin-bottom: 5px; */
   color: #1a1a1a;
 }
 
-/* Map placeholder (since we can't embed the actual map, this is a stand-in) */
 .map-placeholder {
   width: 100%;
   height: 200px;
   background-color: #e6f0fa;
   border-radius: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,19 +33,18 @@
 .revenue-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .revenue-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  /* gap: 10px; */
+  margin-top: 5px;
 }
 
 .location {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   color: #444;
   min-width: 100px;
@@ -66,14 +64,13 @@
 }
 
 .revenue {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   color: #666;
   min-width: 50px;
   text-align: right;
 }
 
-/* Dynamic progress bar width based on revenue (example values) */
 [data-revenue="72"] .progress-bar-fill {
   width: 100%;
 }

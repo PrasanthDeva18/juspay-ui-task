@@ -1,22 +1,20 @@
-/* --- Main Table Wrapper --- */
 .table-paper {
   border-radius: 12px !important;
   padding: 1rem;
 }
 
-/* --- Custom Toolbar --- */
 .toolbar-left-actions {
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
+
 .toolbar-left-actions h4 {
   margin: 0;
   font-weight: 600;
   color: #111827;
 }
 
-/* --- Table Header --- */
 .table-header-row {
   background-color: #f9fafb;
 }
@@ -29,7 +27,6 @@ thead th {
   letter-spacing: 0.5px;
 }
 
-/* --- Table Body & Rows --- */
 .table-body-row {
   transition: background-color 0.2s ease;
 }
@@ -47,7 +44,6 @@ tbody tr:last-child {
   border-bottom: none;
 }
 
-/* --- Table Cells --- */
 td {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
@@ -58,7 +54,6 @@ th {
   border-bottom: none !important;
 }
 
-/* --- Status Badges --- */
 .status-cell {
   display: flex;
   align-items: center;
@@ -107,18 +102,15 @@ th {
   background-color: #dc2626;
 }
 
-/* --- Icons --- */
 .action-icon {
   color: #9ca3af;
   cursor: pointer;
 }
 
-/* --- Checkbox --- */
 .mantine-Checkbox-input {
   border-radius: 4px;
 }
 
-/* --- Pagination --- */
 .table-pagination {
   padding-top: 1.5rem;
   border-top: 1px solid #e5e7eb;
@@ -127,6 +119,6 @@ th {
   border: 1px solid #e5e7eb !important;
 }
 .mantine-Pagination-control[data-active] {
-  background-color: #f3f4f6 !important;
+  /* background-color: #f3f4f6 !important; */
   border-color: #d1d5db !important;
 }

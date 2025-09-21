@@ -1,11 +1,12 @@
 .table-container {
-  background: #f8f9fa;
+  background: rgba(247, 249, 251, 1);
   padding: 20px;
   border-radius: 12px;
   width: 100%;
-  max-width: 700px;
+  height: 400px;
+  max-width: 600px;
   margin: 20px auto;
-  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .table-title {
@@ -18,7 +19,7 @@
 .custom-table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
+  background: rgba(247, 249, 251, 1);
 }
 
 .custom-table th,

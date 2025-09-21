@@ -1,4 +1,3 @@
-import React from "react";
 import ReactECharts from "echarts-for-react";
 import "./projection.css";
 
@@ -60,7 +59,7 @@ const ChartCard = () => {
     <div className="chart-card">
       <ReactECharts
         option={option}
-        style={{ height: "280px", width: "100%" }}
+        style={{ height: "220px", width: "100%" }}
       />
     </div>
   );

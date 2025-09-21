@@ -28,6 +28,7 @@ const RevenueChartCard: React.FC = () => {
         color: "#666",
       },
     },
+    innerWidth: "600px",
     series: [
       {
         name: "Previous Week",
@@ -95,7 +96,7 @@ const RevenueChartCard: React.FC = () => {
       </div>
       <ReactECharts
         option={option}
-        style={{ height: "390px", width: "100%" }}
+        style={{ height: "300px", width: "550px" }}
       />
     </div>
   );

@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function ContactSection() {
   const contacts = [
     { avatar: "https://i.pravatar.cc/30?img=11", name: "Natali Craig" },

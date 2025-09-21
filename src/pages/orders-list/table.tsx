@@ -1,32 +1,28 @@
 import { useMemo, useState } from "react";
 import { MantineReactTable, useMantineReactTable } from "mantine-react-table";
-import { Box, Text, Avatar, Group, ActionIcon, Title } from "@mantine/core";
+
 import {
   IconCalendar,
   IconCopy,
   IconDotsVertical,
   IconPlus,
-  IconFilter,
-  IconArrowsSort,
-  IconSearch,
 } from "@tabler/icons-react";
-import { data } from "./data"; // Mock data from the next step
-import "./table.css"; // CSS styles from the final step
+import { data } from "./data";
+import "./table.css";
+import { Group, Avatar, Box, Title, ActionIcon } from "@mantine/core";
 
-// Custom component for the Status cell to match the design
-const StatusBadge = ({ status }) => {
-  // Generates a CSS-friendly class name (e.g., "In Progress" -> "in-progress")
+const StatusBadge = ({ status }: any) => {
   const statusClass = status.toLowerCase().replace(" ", "-");
+
   return (
     <div className={`status-cell ${statusClass}`}>
       <span className="status-dot"></span>
-      <Text fz="sm">{status}</Text>
+      <p>{status}</p>
     </div>
   );
 };
 
 const TableComponent = () => {
-  const [zoomY, setZoomY] = useState(1);
   const columns = useMemo(
     () => [
       {
@@ -37,12 +33,10 @@ const TableComponent = () => {
       {
         accessorKey: "user.name",
         header: "User",
-        Cell: ({ row }) => (
-          <Group gap="sm">
+        Cell: ({ row }: any) => (
+          <Group>
             <Avatar src={row.original.user.avatar} size={36} radius="xl" />
-            <Text fz="sm" fw={500}>
-              {row.original.user.name}
-            </Text>
+            <p>{row.original.user.name}</p>
           </Group>
         ),
       },
@@ -54,8 +48,8 @@ const TableComponent = () => {
         accessorKey: "address",
         header: "Address",
         Cell: ({ cell, row }) => (
-          <Group gap="xs" justify="space-between" wrap="nowrap">
-            <Text fz="sm">{cell.getValue()}</Text>
+          <Group>
+            <p>{cell.getValue()}</p>
             {row.getIsSelected() && (
               <IconCopy size={16} className="action-icon" />
             )}
@@ -66,9 +60,9 @@ const TableComponent = () => {
         accessorKey: "date",
         header: "Date",
         Cell: ({ cell }) => (
-          <Group gap="xs" wrap="nowrap">
+          <Group>
             <IconCalendar size={18} style={{ color: "#6B7281" }} />
-            <Text fz="sm">{cell.getValue()}</Text>
+            <p>{cell.getValue()}</p>
           </Group>
         ),
       },
@@ -80,6 +74,11 @@ const TableComponent = () => {
     ],
     []
   );
+
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 5,
+  });
 
   const table = useMantineReactTable({
     columns,
@@ -93,26 +92,30 @@ const TableComponent = () => {
     renderTopToolbarCustomActions: () => (
       <Box className="toolbar-left-actions">
         <Title order={4}>Order List</Title>
-        <Group gap="xs">
+        <Group>
           <ActionIcon variant="default" size="lg">
             <IconPlus size={18} />
           </ActionIcon>
-          <ActionIcon variant="default" size="lg">
+          {/* <ActionIcon variant="default" size="lg">
             <IconFilter size={18} />
           </ActionIcon>
           <ActionIcon variant="default" size="lg">
             <IconArrowsSort size={18} />
-          </ActionIcon>
+          </ActionIcon> */}
         </Group>
       </Box>
     ),
 
-    // Search/Filter configuration
+    state: {
+      pagination,
+    },
+
     initialState: { showGlobalFilter: true },
+    onPaginationChange: setPagination,
     positionGlobalFilter: "right",
     mantineSearchTextInputProps: {
       placeholder: "Search",
-      leftSection: <IconSearch size={16} />,
+      // rightSection: <IconSearch />,
       variant: "filled",
       radius: "md",
     },
@@ -132,13 +135,15 @@ const TableComponent = () => {
     },
 
     // Styling Props
-    mantineTableContainerProps: {
-      className: "table-container",
-    },
+    // mantineTableContainerProps: {
+    //   className: "table-container",
+    // },
+    paginationDisplayMode: "pages",
+
     mantineTableHeadRowProps: {
       className: "table-header-row",
     },
-    mantineTableBodyRowProps: ({ row }) => ({
+    mantineTableBodyRowProps: ({ row }: any) => ({
       className: `table-body-row ${row.getIsSelected() && "selected-row"}`,
     }),
     mantinePaperProps: {
@@ -146,16 +151,15 @@ const TableComponent = () => {
       shadow: "sm",
       withBorder: false,
     },
+
     mantinePaginationProps: {
       className: "table-pagination",
+      showRowsPerPage: false,
     },
   });
 
   return (
-    <div
-      className="table-wrapper"
-      style={{ transform: `scaleY(${zoomY})`, transformOrigin: "top" }}
-    >
+    <div className="table-wrapper">
       <MantineReactTable table={table} />
     </div>
   );

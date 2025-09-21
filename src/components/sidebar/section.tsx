@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { IconChevronDown, IconStar } from "@tabler/icons-react";
 import { type MenuItem } from "../../types/menu";
 import { useFavorites } from "../../store/use-favorites";
 
 interface Props {
-  item: MenuItem;
+  item: any;
   isOpen: boolean;
   isHeading?: boolean;
 }
@@ -16,9 +17,12 @@ export default function SidebarSection({
 }: Props) {
   const [expanded, setExpanded] = useState(false);
   const { favorites } = useFavorites();
-  const isFavorite = favorites.includes(item.label);
+  const location = useLocation();
 
-  // Headings are non-expandable
+  const isFavorite = favorites.includes(item.label);
+  const hasChildren = !!item.children?.length;
+  const isActive = item.path && location.pathname === item.path;
+
   if (isHeading) {
     return (
       <div className="sidebar-heading">
@@ -31,18 +35,24 @@ export default function SidebarSection({
   return (
     <div className="sidebar-section relative group">
       <div
-        className="sidebar-item"
-        onClick={() => isOpen && item.children && setExpanded(!expanded)}
+        className={`sidebar-item ${isActive ? "active" : ""}`}
+        onClick={() => isOpen && hasChildren && setExpanded(!expanded)}
       >
         <div className="sidebar-item-left">
           {item.icon}
-          {isOpen && <span>{item.label}</span>}
+          {isOpen && item.path ? (
+            <Link to={item.path} className="flex-1">
+              <span>{item.label}</span>
+            </Link>
+          ) : (
+            isOpen && <span>{item.label}</span>
+          )}
         </div>
 
         {isOpen && (
           <div className="sidebar-item-right">
             {isFavorite && <IconStar size={14} />}
-            {item.children && (
+            {hasChildren && (
               <IconChevronDown
                 size={14}
                 className={`chevron ${expanded ? "rotated" : ""}`}
@@ -52,20 +62,20 @@ export default function SidebarSection({
         )}
       </div>
 
-      {/* Sub-items as tooltip when sidebar is closed */}
-      {!isOpen && item.children && (
+      {/* Tooltip when closed */}
+      {!isOpen && hasChildren && (
         <div className="tooltip absolute left-full top-0 ml-2 hidden group-hover:block bg-white border shadow-lg rounded-md min-w-[150px] z-50">
-          {item.children.map((child, idx) => (
-            <SubItemTooltip key={idx} item={child} />
+          {item.children.map((child: any) => (
+            <SubItemTooltip key={child.label} item={child} />
           ))}
         </div>
       )}
 
-      {/* Expanded sub-items inside sidebar when open */}
-      {expanded && isOpen && item.children && (
+      {/* Expanded children when open */}
+      {expanded && isOpen && hasChildren && (
         <div className="sidebar-children">
-          {item.children.map((child, idx) => (
-            <SubItem key={idx} item={child} isSidebarOpen={isOpen} />
+          {item.children.map((child: any) => (
+            <SubItem key={child.label} item={child} isSidebarOpen={isOpen} />
           ))}
         </div>
       )}
@@ -73,24 +83,30 @@ export default function SidebarSection({
   );
 }
 
-// SubItem component
 function SubItem({
   item,
   isSidebarOpen,
 }: {
-  item: MenuItem;
+  item: any;
   isSidebarOpen: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
   const { favorites } = useFavorites();
-  const isFavorite = favorites.includes(item.label);
+  const location = useLocation();
 
-  if (!item.children) {
+  const isFavorite = favorites.includes(item.label as any);
+  const hasChildren = !!item.children?.length;
+  const isActive = item.path && location.pathname === item.path;
+
+  if (!hasChildren) {
     return (
-      <div className="sidebar-leaf">
+      <Link
+        to={item.path || "#"}
+        className={`sidebar-leaf ${isActive ? "active" : ""}`}
+      >
         {item.icon}
         {isSidebarOpen && <span>{item.label}</span>}
-      </div>
+      </Link>
     );
   }
 
@@ -104,7 +120,7 @@ function SubItem({
 
         <div className="sidebar-item-right">
           {isFavorite && <IconStar size={12} />}
-          {item.children && (
+          {hasChildren && (
             <IconChevronDown
               size={12}
               className={`chevron ${expanded ? "rotated" : ""}`}
@@ -113,13 +129,19 @@ function SubItem({
         </div>
       </div>
 
-      {expanded && isSidebarOpen && item.children && (
+      {expanded && isSidebarOpen && hasChildren && (
         <div className="sidebar-children nested">
-          {item.children.map((child, idx) => (
-            <div key={idx} className="sidebar-leaf">
+          {item?.children.map((child: any) => (
+            <Link
+              key={child.label}
+              to={child.path || "#"}
+              className={`sidebar-leaf ${
+                location.pathname === child.path ? "active" : ""
+              }`}
+            >
               {child.icon}
               <span>{child.label}</span>
-            </div>
+            </Link>
           ))}
         </div>
       )}
@@ -127,16 +149,22 @@ function SubItem({
   );
 }
 
-// Tooltip version for collapsed sidebar
 function SubItemTooltip({ item }: { item: MenuItem }) {
   const { favorites } = useFavorites();
-  const isFavorite = favorites.includes(item.label);
+  const location = useLocation();
+  const isFavorite: any = favorites.includes(item.label as any);
+  const isActive = item.path && location.pathname === item.path;
 
   return (
-    <div className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer">
+    <Link
+      to={item.path || "#"}
+      className={`flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer ${
+        isActive ? "bg-gray-200 font-semibold" : ""
+      }`}
+    >
       {item.icon}
       <span>{item.label}</span>
       {isFavorite && <IconStar size={12} />}
-    </div>
+    </Link>
   );
 }

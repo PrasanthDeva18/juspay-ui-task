@@ -4,6 +4,7 @@ import { sidebarMenu } from "../../data/sidebar-section";
 import SidebarSection from "./section";
 import "./sidebar.css";
 import { tabs } from "../../data/sidebar-section";
+import { Link, useLocation } from "react-router-dom";
 
 export function useClickOutside(
   ref: React.RefObject<HTMLElement>,
@@ -27,9 +28,12 @@ export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("Favorites");
 
+  const location = useLocation();
+
   const currentTab = tabs.find((t) => t.label === activeTab);
 
   const [tooltipOpen, setTooltipOpen] = useState(false);
+  console.log(tooltipOpen);
 
   const tooltipRef = useRef<HTMLDivElement>(null);
   useClickOutside(tooltipRef as any, () => setTooltipOpen(false));
@@ -37,7 +41,7 @@ export default function Sidebar() {
   return (
     <aside className={`sidebar ${isOpen ? "open" : "collapsed"}`}>
       <div className="sidebar-header">
-        {isOpen && <h1 className="logo">ByeWind</h1>}
+        {isOpen && <h1 className="logo">JusPay</h1>}
         <button className="toggle-btn" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? (
             <IconChevronLeft size={20} />
@@ -46,6 +50,7 @@ export default function Sidebar() {
           )}
         </button>
       </div>
+
       {/* <div className="sidebar-tabs">
         {tabs.map((tab) => (
           <div
@@ -59,7 +64,7 @@ export default function Sidebar() {
         ))}
       </div> */}
 
-      <div className="sidebar-tabs">
+      <div className="sidebar-tabs mt-10">
         {tabs.map((tab) => (
           <div
             key={tab.label}
@@ -68,10 +73,9 @@ export default function Sidebar() {
             }`}
             onClick={() => setActiveTab(tab.label)}
           >
-            {tab.icon}
+            {/* {tab.icon} */}
             {isOpen && <span>{tab.label}</span>}
 
-            {/* Tooltip when collapsed */}
             {!isOpen && (
               <div className="tooltip absolute left-full top-1/2 transform -translate-y-1/2 ml-2 bg-white border shadow-lg rounded-md min-w-[100px] z-50 hidden group-hover:block">
                 <div className="p-2 flex items-center gap-2">{tab.label}</div>
@@ -82,24 +86,45 @@ export default function Sidebar() {
       </div>
 
       <div className="sidebar-tab-items">
-        {currentTab?.items.map((item) => (
-          <div key={item.label} className="sidebar-tab-item group relative">
-            <div className="tab-item-main flex items-center gap-2 px-3 py-2 cursor-pointer rounded hover:bg-gray-100">
-              {item.icon}
-              {isOpen && <span>{item.label}</span>}
-            </div>
+        {currentTab?.items.map((item: any) => {
+          const isActive = item.path && location.pathname === item.path;
 
-            {/* Tooltip when sidebar is collapsed */}
-            {!isOpen && (
-              <div className="tooltip absolute left-full top-0 ml-2 bg-white border shadow-lg rounded-md min-w-[150px] z-50 hidden group-hover:block">
-                <div className="p-2 flex items-center gap-2 hover:bg-gray-100 cursor-pointer">
+          return (
+            <div key={item.label} className="sidebar-tab-item group relative">
+              {/* Main clickable area */}
+              {isOpen ? (
+                <Link
+                  to={item.path || "#"}
+                  className={`tab-item-main flex items-center gap-2 px-3 py-2 cursor-pointer rounded hover:bg-gray-100 ${
+                    isActive ? "bg-gray-200 font-semibold" : ""
+                  }`}
+                >
                   {item.icon}
                   <span>{item.label}</span>
+                </Link>
+              ) : (
+                <div className="tab-item-main flex items-center gap-2 px-3 py-2 cursor-pointer rounded hover:bg-gray-100">
+                  {item.icon}
                 </div>
-              </div>
-            )}
-          </div>
-        ))}
+              )}
+
+              {/* Tooltip for collapsed sidebar */}
+              {!isOpen && item.path && (
+                <div className="tooltip absolute left-full top-0 ml-2 bg-white border shadow-lg rounded-md min-w-[150px] z-50 hidden group-hover:block">
+                  <Link
+                    to={item?.path}
+                    className={`p-2 flex items-center gap-2 hover:bg-gray-100 cursor-pointer ${
+                      isActive ? "bg-gray-200 font-semibold" : ""
+                    }`}
+                  >
+                    {item.icon}
+                    <span>{item.label}</span>
+                  </Link>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       <nav className="sidebar-menu">

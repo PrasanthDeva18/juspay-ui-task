@@ -18,6 +18,9 @@ const revenueData: RevenueData[] = [
 const RevenueCard: React.FC = () => {
   return (
     <div className="revenue-card">
+      <h2 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "5px" }}>
+        Revenue by Location
+      </h2>
       <RevenueByLocation />
       <div className="revenue-list">
         {revenueData.map((item) => (
@@ -28,7 +31,6 @@ const RevenueCard: React.FC = () => {
               data-revenue={item.revenue}
             >
               <p className="location">{item.location}</p>
-
               <p className="revenue">{item.revenue}K</p>
             </div>
             <div>

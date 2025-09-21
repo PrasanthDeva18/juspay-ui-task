@@ -5,15 +5,13 @@
   width: 300px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #333;
 }
 
 .total-sales-card h2 {
   text-align: center;
-  font-size: 22px;
+  font-size: 30px;
   font-weight: 600;
-  margin-bottom: 20px;
   color: #1a1a1a;
 }
 

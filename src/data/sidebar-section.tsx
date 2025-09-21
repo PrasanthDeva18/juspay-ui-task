@@ -21,11 +21,13 @@ export const tabs = [
       {
         label: "Overview",
         icon: <IconLayoutDashboard size={16} />,
+        path: "/",
         // subItems: ["Dashboard 1", "Dashboard 2"],
       },
       {
         label: "Projects",
         icon: <IconBriefcase size={16} />,
+        path: "/orders-list",
         // subItems: ["Project A", "Project B"],
       },
     ],
@@ -49,47 +51,73 @@ export const tabs = [
 ];
 
 export const sidebarMenu: MenuItem[] = [
-  // {
-  //   label: "Favorites",
-  //   icon: <IconStar size={18} />,
-  //   children: [
-  //     { label: "Overview", icon: <IconLayoutDashboard size={16} /> },
-  //     { label: "Projects", icon: <IconBriefcase size={16} /> },
-  //     { label: "Recently", icon: <IconClock size={16} /> },
-  //   ],
-  // },
   {
     label: "Dashboards",
     icon: <IconLayoutDashboard size={18} />,
-    isHeading: true, // mark as heading
+    isHeading: true,
     children: [
-      { label: "Default", icon: <IconLayoutDashboard size={16} /> },
-      { label: "eCommerce", icon: <IconShoppingCart size={16} /> },
-      { label: "Projects", icon: <IconBriefcase size={16} /> },
-      { label: "Online Courses", icon: <IconBook size={16} /> },
+      { label: "Default", icon: <IconLayoutDashboard size={16} />, path: "/" },
+      {
+        label: "eCommerce",
+        icon: <IconShoppingCart size={16} />,
+        path: "/ecommerce",
+      },
+      {
+        label: "Projects",
+        icon: <IconBriefcase size={16} />,
+        path: "/orders-list",
+      },
+      {
+        label: "Online Courses",
+        icon: <IconBook size={16} />,
+        path: "/courses",
+      },
     ],
   },
   {
     label: "Pages",
     icon: <IconFileText size={18} />,
-    isHeading: true, // mark as heading
-
+    isHeading: true,
     children: [
       {
         label: "User Profile",
         icon: <IconUser size={16} />,
         children: [
-          { label: "Overview", icon: <IconLayoutDashboard size={14} /> },
-          { label: "Projects", icon: <IconBriefcase size={14} /> },
-          { label: "Campaigns", icon: <IconFileDescription size={14} /> },
-          { label: "Documents", icon: <IconFolder size={14} /> },
-          { label: "Followers", icon: <IconUsers size={14} /> },
+          {
+            label: "Overview",
+            icon: <IconLayoutDashboard size={14} />,
+            path: "/",
+          },
+          {
+            label: "Projects",
+            icon: <IconBriefcase size={14} />,
+            path: "/orders-list",
+          },
+          {
+            label: "Campaigns",
+            icon: <IconFileDescription size={14} />,
+            path: "/campaigns",
+          },
+          {
+            label: "Documents",
+            icon: <IconFolder size={14} />,
+            path: "/documents",
+          },
+          {
+            label: "Followers",
+            icon: <IconUsers size={14} />,
+            path: "/followers",
+          },
         ],
       },
-      { label: "Account", icon: <IconUser size={16} /> },
-      { label: "Corporate", icon: <IconBriefcase size={16} /> },
-      { label: "Blog", icon: <IconBook size={16} /> },
-      { label: "Social", icon: <IconUsers size={16} /> },
+      { label: "Account", icon: <IconUser size={16} />, path: "/account" },
+      {
+        label: "Corporate",
+        icon: <IconBriefcase size={16} />,
+        path: "/corporate",
+      },
+      { label: "Blog", icon: <IconBook size={16} />, path: "/blog" },
+      { label: "Social", icon: <IconUsers size={16} />, path: "/social" },
     ],
   },
 ];
